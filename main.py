@@ -1,3 +1,7 @@
+"""
+These are used for
+multiline comments
+"""
 # Example file showing a circle moving on screen
 import pygame
 
