@@ -1,27 +1,43 @@
-#imports
+# Example file showing a circle moving on screen
 import pygame
-pygame.init
 
-# Set up the drawing window
-screen = pygame.display.set_mode([500, 500])
-
-# Run until the user asks to quit
+# pygame setup
+pygame.init()
+screen = pygame.display.set_mode((1280, 720))
+clock = pygame.time.Clock()
 running = True
-while running:
+dt = 0
 
-    # Did the user click the window close button?
+player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
+
+while running:
+    # poll for events
+    # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    # Fill the background with white
-    screen.fill((255, 255, 255))
+    # fill the screen with a color to wipe away anything from last frame
+    screen.fill("purple")
 
-    # Draw a solid blue circle in the center
-    pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)
+    pygame.draw.circle(screen, "red", player_pos, 40)
 
-    # Flip the display
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_w]:
+        player_pos.y -= 300 * dt
+    if keys[pygame.K_s]:
+        player_pos.y += 300 * dt
+    if keys[pygame.K_a]:
+        player_pos.x -= 300 * dt
+    if keys[pygame.K_d]:
+        player_pos.x += 300 * dt
+
+    # flip() the display to put your work on screen
     pygame.display.flip()
 
-# Done! Time to quit.
+    # limits FPS to 60
+    # dt is delta time in seconds since last frame, used for framerate-
+    # independent physics.
+    dt = clock.tick(60) / 1000
+
 pygame.quit()
