@@ -13,4 +13,10 @@ class Card:
         
         self.value = value
         self.suit = suit
-    
+
+#modifier methods
+    def changeSuit(self, suit):
+        self.suit = suit
+        
+    def changeValue(self, value):
+        self.value = value

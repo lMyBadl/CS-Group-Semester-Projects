@@ -12,10 +12,6 @@ class Deck:
     if(jokers == True):
             deck.extend(jokers)
 
-#return size of deck
-    def __sizeof__(self):
-        return len(self.deck)
-
 #removes cards, "*" for any amount of cards
     def removeCards(self, *cards):
         return "Removed successfully"
