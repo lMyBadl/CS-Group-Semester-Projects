@@ -5,6 +5,10 @@ multiline comments
 # Example file showing a circle moving on screen
 import pygame
 
+#import classes
+from deck import Deck
+from card import Card
+
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
