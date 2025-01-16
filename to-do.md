@@ -1,12 +1,5 @@
-- [ ] 1
-- [ ] 1
-- [ ] 1
-- [ ] 1
-- [ ] 1
-- [ ] 1
-- [ ] 1
-- [ ] 1
-- [ ] 1
-- [ ] 1
-- [ ] 1
-- [ ] 1
+General Path:
+- [ ] Create general framework for card games (shuffling, hands, turns, etc.)
+- [ ] Develop GUI for game
+- [ ] implement QOL things (card raises after hovering, dragging cards around, mouse showing, etc.)
+- [ ] implement rules to card game
