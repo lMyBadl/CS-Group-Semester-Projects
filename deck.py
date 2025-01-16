@@ -1,25 +1,24 @@
 import random #random for list shuffling
-import numpy # numpy for creating values list
 
 #imports Card class from card.py
 from card import Card
 class Deck:
     #default deck without jokers
     validSuits = ["hearts", "diamonds", "spades", "clubs"]
-    validValues = numpy.arange(1,11).extend("jack", "queen", "king")
-    
+    validValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, "jack", "queen", "king"] #in case we haven't converted to ints yet
+
     #empty deck for customization later
     deck = []
     
-    def checkValidCard(self, value: int, suit: str) -> str:
-        if value < 1 or value > 13:
+    #if it is not a valid card, returns True, otherwise a blank string means False
+    def checkNonValidCard(self, value: int, suit: str) -> str:
+        if value not in self.validValues:
             return "Value out of bounds."
         elif str not in self.validSuits:
             return "Suit not valid."
+        return ""
 #                               default suits                            default values
     def __init__(self, jokers: bool, suits: list = validSuits, values: list = validValues):
-        
-        #check bounds
         
         # check for correct suits
         for suit in suits:
@@ -54,10 +53,11 @@ class Deck:
 
     #removes a card of certain value and suit
     def removeCards(self, value, suit):
-        if self.deck.__contains__(Card(value, suit)):
-            self.deck.remove(Card(value, suit))
-            return value, "of", suit, "removed."
-        return "Card not found."
+        if self.checkNonValidCard(value, suit) == False:
+            if self.deck.__contains__(Card(value, suit)):
+                self.deck.remove(Card(value, suit))
+                return value, "of", suit, "removed."
+        raise Exception(self.checkValidCard(value, suit))
         
     #shuffle deck
     def shuffleDeck(self):
