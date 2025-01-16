@@ -6,6 +6,8 @@ class Deck:
     jokers = [Card("red", "joker"), Card("black", "joker")]
 
     def __init__(self, jokers):
+        if(jokers.type() != bool):
+            return "Argument for Jokers needs to be a boolean."
         self.jokers = jokers
         
     #adds jokers if needed
