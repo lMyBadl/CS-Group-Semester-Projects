@@ -1,5 +1,5 @@
-#imports Card class from card.py
-from card import Card
+from card import Card #imports Card class from card.py
+import random #random for list shuffling
 
 class Deck:
     deck = []
@@ -17,9 +17,10 @@ class Deck:
         return len(self.deck)
 
 #removes cards, "*" for any amount of cards
-    def removeCards(*cards):
+    def removeCards(self, *cards):
         return "Removed successfully"
         
 #shuffle deck
     def shuffleDeck(self):
+        random.shuffle(self.deck)
         return "Shuffled successfully"
