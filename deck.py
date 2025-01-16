@@ -23,5 +23,3 @@ class Deck:
 #shuffle deck
     def shuffleDeck(self):
         return "Shuffled successfully"
-
-    
