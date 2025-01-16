@@ -28,13 +28,8 @@ class Card:
     #toString method
     def __str__(self):
         if self.value > 10:
-            if self.value == 11:
-                output = "jack of " + self.suit
-            
-            elif self.value == 12:
-                output = "queen of " + self.suit
-            else:
-                output = "king of " + self.suit
+            self._convertInttoFace()
+            output = self.value + " of " + self.suit
         elif self.suit == "joker":
             if self.value == 1:
                 output = "red joker"
@@ -58,7 +53,6 @@ class Card:
 
         #if not string and int then proceed
         if not isinstance(self.value, str) and not isinstance(self.value, int):
-            print(self.value, isinstance(self.value, str), isinstance(self.value, int))
             raise Exception("Not a valid value.")
         
         elif isinstance(self.value, str):
@@ -83,15 +77,6 @@ class Card:
             return self.value, "'s suit changed from", oldSuit, "to", suit
         #no error message here b/c if checksuit fails then it will throw an exception
 
-    def changeToJoker(self, color:str):
-        if color != "red" and color != "black":
-            raise Exception("Color is not red or black.")
-        if color == "red":
-            self.value = 1
-        else:
-            self.value = 2
-        self.suit = "joker"
-
     #changes value of card
     def changeValue(self, value):
         oldValue = self.value
@@ -106,23 +91,32 @@ class Card:
             #checks if the value is a face card, and if so stores it as an int
             return self.suit, "'s value changed from", oldValue, "to", value
 
+    #changes a card to a joker
+    def changeToJoker(self, color:str):
+        if color != "red" and color != "black":
+            raise Exception("Color is not red or black.")
+        self.changeToJoker(color)
+
+    #changes a card to a regular card
+    def changeFromJoker(self, value, suit: str):
+        self.changeValue(value)
+        self.changesuit(suit)
+
     #converts from a face card to an int for easier processing
     def _convertFacetoInt(self):
         if not isinstance(self.value, str):
-            print(self.value)
             raise Exception("Not a string")
         
         if self.value not in self.faceCards:
             raise Exception("Not a face card.")
         
         if self.value == "jack":
-            self.value = 11
+            self.changeValue(11)
         
         if self.value == "queen":
-            self.value = 12
+            self.changeValue(12)
         else:
-            self.value = 13
-        print(self.value)
+            self.changeValue(13)
     
     #converts from int to face
     def _convertInttoFace(self):
