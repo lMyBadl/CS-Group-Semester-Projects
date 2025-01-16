@@ -8,7 +8,7 @@ import pygame
 #import classes
 from deck import Deck
 from card import Card
-
+"""
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
@@ -49,3 +49,5 @@ while running:
     dt = clock.tick(60) / 1000
 
 pygame.quit()
+"""
+d1 = Deck("oof")

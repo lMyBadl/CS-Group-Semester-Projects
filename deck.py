@@ -4,41 +4,63 @@ import numpy # numpy for creating values list
 #imports Card class from card.py
 from card import Card
 class Deck:
-    suits = ["hearts", "diamonds", "spades", "clubs"]
-    jokers = [Card("red", "joker"), Card("black", "joker")]
+    #default deck without jokers
+    validSuits = ["hearts", "diamonds", "spades", "clubs"]
+    validValues = numpy.arange(1,11).extend("jack", "queen", "king")
     
     #empty deck for customization later
     deck = []
     
-#                               default suits                                       default values from 1-13
-    def __init__(self, jokers, suits = ["hearts", "diamonds", "spades", "clubs"], values = numpy.arange(1,14)):
+    def checkValidCard(self, value: int, suit: str) -> str:
+        if value < 1 or value > 13:
+            return "Value out of bounds."
+        elif str not in self.validSuits:
+            return "Suit not valid."
+#                               default suits                            default values
+    def __init__(self, jokers: bool, suits: list = validSuits, values: list = validValues):
+        
+        #check bounds
+        
         # check for correct suits
         for suit in suits:
-            if suit not in self.suits:
-                return 'Inputted suit is not "hearts", "diamonds", "spades", and/or "clubs".'
-            
+            if suit not in self.validSuits:
+                raise Exception('Inputted suit is not "hearts", "diamonds", "spades", and/or "clubs".')
+        
+        #check for values in bound
+        for value in values:
+            if type(value) != int:
+                raise Exception("Value not of type int.")
+            elif(value < 1 or value > 13):
+                raise Exception("Value not in bounds.")
+        """    
         #check for correct jokers type
-        if(jokers.type() != bool):
+        if(type(jokers) != bool):
             return "Argument for Jokers needs to be a boolean."
+        """
             
         #adding the suits and values wanted to the deck
         for suit in suits:
-            for value in values:
+            for value in self.validValues:
                 self.deck.append(Card(value, suit))
+                
+        #adds jokers if wanted
+        if jokers:
+            self.deck.extend(Card("red", "joker"), Card("black", "joker"))
+            
+        #stores inputs in case they're different from default
         self.jokers = jokers
-        
-    #adds jokers if needed
-    if(jokers == True):
-            deck.extend(jokers)
+        self.suits = suits
+        self.values = values
 
-#removes cards, "*" for any amount of cards
+    #removes a card of certain value and suit
     def removeCards(self, value, suit):
         if self.deck.__contains__(Card(value, suit)):
             self.deck.remove(Card(value, suit))
             return value, "of", suit, "removed."
         return "Card not found."
         
-#shuffle deck
+    #shuffle deck
     def shuffleDeck(self):
         random.shuffle(self.deck)
         return "Shuffled successfully"
+
