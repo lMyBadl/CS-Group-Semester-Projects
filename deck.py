@@ -12,6 +12,12 @@ class Deck:
     faceCards = ["jack", "queen", "king"]
     validSuits = {"hearts", "diamonds", "spades", "clubs"}
 
+    def checkValidCard(self, value: int, suit: str) -> str:
+        if value < 1 or value > 13:
+            return "Value out of bounds."
+        elif str not in self.validSuits:
+            return "Suit not valid."
+        
 #                               default suits                            default values
     def __init__(self, wantsJokers: bool, suits: list = validSuits, values: list = validValues, numDecks: int = 1):
         
