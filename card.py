@@ -13,7 +13,7 @@ class Card:
         self.value = value
         self.suit = suit
         #checks for unvalid inputs and doesn't enter values if not in ranges
-        self._checkValidCard()
+        self.checkValidCard()
 
         if value in self.faceCards:
             if value == "jack":
@@ -28,7 +28,7 @@ class Card:
     #toString method
     def __str__(self):
         if self.value > 10:
-            self._convertInttoFace()
+            self.convertCardFromIntToFace()
             output = self.value + " of " + self.suit
         elif self.suit == "joker":
             if self.value == 1:
@@ -40,7 +40,7 @@ class Card:
         return ''.join(output)
 
     #checks if the suit is a real card suit
-    def _checkSuit(self):
+    def checkSuit(self):
         if not isinstance(self.suit, str):
             raise Exception("Suit is not a string.")
         self.suit = self.suit.lower()
@@ -49,7 +49,7 @@ class Card:
         return True
     
     #return True if it is a card value
-    def _checkValue(self):
+    def checkValue(self):
 
         #if not string and int then proceed
         if not isinstance(self.value, str) and not isinstance(self.value, int):
@@ -73,7 +73,7 @@ class Card:
         if suit == "joker":
             raise Exception("Suit cannot be changed to joker. Use changeToJoker instead.")
 
-        if self._checkSuit():
+        if self.checkSuit():
             return self.value, "'s suit changed from", oldSuit, "to", suit
         #no error message here b/c if checksuit fails then it will throw an exception
 
@@ -81,13 +81,13 @@ class Card:
     def changeValue(self, value):
         oldValue = self.value
         if oldValue in self.faceCards:
-            self._convertInttoFace()
+            self.convertCardFromIntToFace()
         self.value = value
 
         if isinstance(value, str):
-            self._convertFacetoInt()
+            self.convertCardFromFaceToInt()
 
-        if self._checkValue():
+        if self.checkValue():
             #checks if the value is a face card, and if so stores it as an int
             return self.suit, "'s value changed from", oldValue, "to", value
 
@@ -103,7 +103,7 @@ class Card:
         self.changesuit(suit)
 
     #converts from a face card to an int for easier processing
-    def _convertFacetoInt(self):
+    def convertCardFromFaceToInt(self):
         if not isinstance(self.value, str):
             raise Exception("Not a string")
         
@@ -119,7 +119,7 @@ class Card:
             self.changeValue(13)
     
     #converts from int to face
-    def _convertInttoFace(self):
+    def convertCardFromIntToFace(self):
         if self.value > 10 and self.value <= 13:
             if self.value == 11:
                 self.value = "jack"
@@ -132,6 +132,6 @@ class Card:
             raise Exception("Not a face card numerical value.")
         
     #checks card validity
-    def _checkValidCard(self):
-        return self._checkSuit() and self._checkValue()
+    def checkValidCard(self):
+        return self.checkSuit() and self.checkValue()
     #if it is not a real card then the check__ methods will throw error so no need to check

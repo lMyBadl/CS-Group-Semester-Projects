@@ -4,8 +4,6 @@ import random #random for list shuffling
 from card import Card
 class Deck:
     
-    #empty deck for customization later
-    deck = []
 
     #default deck without jokers for checking
     validValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] #in case we haven't converted to ints yet
@@ -21,6 +19,9 @@ class Deck:
 #                               default suits                            default values
     def __init__(self, wantsJokers: bool, suits: list = validSuits, values: list = validValues, numDecks: int = 1):
         
+        #empty deck for customization later
+        self.deck = []
+
         #I don't need to check for bounds because the creation of Card objects will automatically throw errors
         if numDecks < 1:
             raise Exception("Number of decks cannot be less than one.")
@@ -48,13 +49,14 @@ class Deck:
         output = ""
         for card in self.deck:
             if suit != card.suit:
-                output += "\n"
+                output += suit + "\n"
                 suit = card.suit
-            output += str(card) + ", "
+            output += str(card.value) + " "
+        output += self.deck[self.deck.__len__() - 1].suit
         return output
 
     #removes a card of certain value and suit
-    def removeCards(self, value, suit):
+    def removeCard(self, value, suit):
         card = Card(value, suit)
         if self.deck.__contains__(card):
             self.deck.remove(card)
