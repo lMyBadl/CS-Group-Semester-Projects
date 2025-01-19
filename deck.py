@@ -16,7 +16,7 @@ class Deck:
         elif str not in self.validSuits:
             return "Suit not valid."
         
-#                               default suits                            default values
+    #default suits, values, and number of decks
     def __init__(self, wantsJokers: bool, suits: list = validSuits, values: list = validValues, numDecks: int = 1):
         
         #empty deck for customization later
