@@ -67,3 +67,8 @@ class Deck:
     def shuffleDeck(self):
         random.shuffle(self.deck)
         return "Shuffled successfully"
+
+    def drawCard(self):
+        if not self.deck:
+            raise Exception("Deck is empty")
+        return self.deck.pop()
