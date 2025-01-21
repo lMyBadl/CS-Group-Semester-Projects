@@ -7,9 +7,9 @@
 
 2. Game Logic
     Card and Deck Management:
-    - [ ] Create a Card class for attributes like rank, suit, and value.
-    - [ ] Create a Deck class to generate multiple decks (depending on the level).
-    - [ ] Implement functions to shuffle, deal, and manage the deck.
+    - [x] Create a Card class for attributes like rank, suit, and value.
+    - [x] Create a Deck class to generate multiple decks (depending on the level).
+    - [x] Implement functions to shuffle, deal, and manage the deck.
 
     Trump Suit Logic:
     - [ ] Define logic to set the trump suit dynamically based on the starting card or current round rules.
