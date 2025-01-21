@@ -68,6 +68,7 @@ class Deck:
         random.shuffle(self.deck)
         return "Shuffled successfully"
 
+    #removes a card every time we draw so the deck is empty after drawing
     def drawCard(self):
         if not self.deck:
             raise Exception("Deck is empty")
