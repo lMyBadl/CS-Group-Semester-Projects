@@ -27,9 +27,10 @@ class Deck:
             raise Exception("Number of decks cannot be less than one.")
             
         #adding the suits and values wanted to the deck
-        for suit in suits:
-            for value in values:
-                self.deck.append(Card(value, suit))
+        self.deck = [Card(value, suit) for suit in suits for value in values]
+        #for suit in suits:
+        #    for value in values:
+        #        self.deck.append(Card(value, suit))
                 
         #adds jokers if wanted
         if wantsJokers:
