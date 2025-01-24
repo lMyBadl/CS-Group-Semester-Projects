@@ -11,7 +11,7 @@
     - [x] Create a Deck class to generate multiple decks (depending on the level).
     - [x] Implement functions to shuffle, deal, and manage the deck.
 
-    Follow Wikipedia page for game logic and then add options for "home" rules
+    (Follow Wikipedia page for game logic and then add options for "home" rules)
     Trump Suit Logic:
     - [ ] Define logic to set the trump suit dynamically based on the starting card or current round rules.
     
