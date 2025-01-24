@@ -2,7 +2,7 @@ class Card:
     #default deck without jokers for checking
     validValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] #in case we haven't converted to ints yet
     #red = 1 and black = 2 because I don't want to bother adding another thing just for colors
-    faceCards = ["jack", "queen", "king"]
+    faceCards = ["ace", "jack", "queen", "king"]
 
     #five suits for us, hearts, diamonds, spades, clubs, and JOKERS
     validSuits = {"Hearts", "Diamonds", "Spades", "Clubs", "Joker"}
@@ -16,14 +16,14 @@ class Card:
         self.checkValidCard()
 
         if value in self.faceCards:
-            if value == "jack":
+            if value == "ace":
+                self.value == 1
+            elif value == "jack":
                 self.value = 11
             elif value == "queen":
                 self.value = 12
             else:
                 self.value = 13
-
-        self.suit = suit
 
     #toString method
     def __str__(self):
@@ -43,9 +43,9 @@ class Card:
     def checkSuit(self):
         if not isinstance(self.suit, str):
             raise Exception("Suit is not a string.")
-        self.suit = self.suit.lower()
+        # self.suit = self.suit.lower() was used before suits had to be capitalized
         if self.suit not in self.validSuits:
-            raise Exception('Suit is not "hearts", "diamonds", "spades", "clubs", or "joker".')
+            raise Exception('Suit is not "Hearts", "Diamonds", "Spades", "Clubs", or "Joker".')
         return True
     
     #return True if it is a card value
@@ -61,7 +61,7 @@ class Card:
             if self.value not in self.faceCards:
                 raise Exception("Not a face card.")
             
-        elif self.value not in self.validValues:
+        elif self.value < 1 or self.value > 13:
             raise Exception("Not a valid value.")
         return True
     
