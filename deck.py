@@ -8,7 +8,7 @@ class Deck:
     #default deck without jokers for checking
     validValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] #in case we haven't converted to ints yet
     faceCards = ["jack", "queen", "king"]
-    validSuits = {"hearts", "diamonds", "spades", "clubs"}
+    validSuits = {"Hearts", "Diamonds", "Spades", "Clubs"}
 
     def checkValidCard(self, value: int, suit: str) -> str:
         if value < 1 or value > 13:

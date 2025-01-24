@@ -5,7 +5,7 @@ class Card:
     faceCards = ["jack", "queen", "king"]
 
     #five suits for us, hearts, diamonds, spades, clubs, and JOKERS
-    validSuits = {"hearts", "diamonds", "spades", "clubs", "joker"}
+    validSuits = {"Hearts", "Diamonds", "Spades", "Clubs", "Joker"}
 
     def __init__(self, value, suit):
         suit = suit.lower()
