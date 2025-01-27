@@ -1,15 +1,14 @@
 1. Project Setup
     - [x] Install Python and Pygame.
     - [x] Create a project folder with the following structure:
-    - [x] /assets: Store card images, sounds, and fonts.
-    - [x] /src: Python scripts for game logic and UI.
-    - [x] /tests: Unit test scripts for game mechanics.
+    - [ ] /assets: Store card images, sounds, and fonts.
+    - [ ] /src: Python scripts for game logic and UI.
 
 2. Game Logic
     Card and Deck Management:
-    - [x] Create a Card class for attributes like rank, suit, and value.
-    - [x] Create a Deck class to generate multiple decks (depending on the level).
-    - [x] Implement functions to shuffle, deal, and manage the deck.
+    - [ ] Create a Card class for attributes like rank, suit, and value.
+    - [ ] Create a Deck class to generate multiple decks (depending on the level).
+    - [ ] Implement functions to shuffle, deal, and manage the deck.
 
     (Follow Wikipedia page for game logic and then add options for "home" rules)
     Trump Suit Logic:
