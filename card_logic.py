@@ -1,3 +1,4 @@
+import random
 #default deck without jokers for checking
 validValues = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"] #in case we haven't converted to ints yet
 #red = 1 and black = 2 because I don't want to bother adding another thing just for colors
@@ -40,13 +41,20 @@ class Deck:
         self.wantsJokers = wantsJokers
         self.numDecks = numDecks
         self.deck = [Card(value, suit) for suit in validSuits for value in validValues]
-
+        #if wantsJokers:
+        #    self.deck.append(Card(""))
     def removeCard(self, value, suit):
         card = Card(value, suit)
         if(card not in self.deck):
             return False
         self.deck.remove(card)
         return True
+    
+    def drawCard(self):
+        return self.deck.pop()
+    
+    def shuffleDeck(self):
+        random.shuffle(self.deck)
     
     def __str__(self):
         output = ""
