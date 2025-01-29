@@ -55,7 +55,7 @@ class Durak:
         screen.blit(time_surface, text_rect)
 
         # Update the display
-        clock.tick(10000)
+        clock.tick(60)
         pygame.display.flip()
 
     # Quit pygame
