@@ -1,4 +1,4 @@
-import random
+import random, pygame
 #default deck without jokers for checking
 validValues = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"] #in case we haven't converted to ints yet
 #red = 1 and black = 2 because I don't want to bother adding another thing just for colors
@@ -11,6 +11,18 @@ class Card:
         if (self.isValid(value, suit)):
             self.value = value
             self.suit = suit
+            if suit == "clubs": s = "Clubs"
+            elif suit == "spades": s = "Spades"
+            elif suit == "diamonds": s = "Diamonds"
+            elif suit == "hearts": s = "Hearts"
+            else: s = suit
+
+            if value == "A": v = 1
+            elif value == "J": v = 11
+            elif value == "Q": v = 12
+            elif value == "K": v = 13
+            else: v = value
+            self.image = pygame.image.load(f"Cards Pack\\Large\\{s} {v}.png")
         
         else:
             raise Exception("Invalid value or suit")
@@ -28,6 +40,7 @@ class Card:
     def __ne__ (self, other):
         return not self.__eq__(other)
 
+
     def isValid(self, value, suit):
         global validValues, validSuits
         return value in validValues and suit in validSuits
@@ -43,6 +56,9 @@ class Deck:
         self.deck = [Card(value, suit) for suit in validSuits for value in validValues]
         #if wantsJokers:
         #    self.deck.append(Card(""))
+
+    def __getitem__(self, item):
+        return self.deck[item]
     def removeCard(self, value, suit):
         card = Card(value, suit)
         if(card not in self.deck):

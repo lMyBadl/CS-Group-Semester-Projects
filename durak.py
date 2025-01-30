@@ -2,9 +2,13 @@ import pygame, sys
 from card_logic import Card, Deck
 from player import Player
 
+card_width = 103
+card_height = 138
+
 class Durak:
     # Initialize pygame
     pygame.init()
+    deck = Deck(False)
 
     # Screen dimensions
     screen_width = 500
@@ -53,6 +57,8 @@ class Durak:
 
         # Blit (draw) the text onto the screen
         screen.blit(time_surface, text_rect)
+        screen.blit(deck[9].image, (screen_width / 2, screen_height-150))
+
 
         # Update the display
         clock.tick(60)
