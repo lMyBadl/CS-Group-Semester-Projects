@@ -6,9 +6,10 @@ validValues = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"] #in case we haven
 #five suits for us, hearts, diamonds, spades, clubs, and JOKERS
 validSuits = {"hearts", "diamonds", "spades", "clubs"}
 
+
 class Card:
     def __init__(self, value, suit):
-        if (self.isValid(value, suit)):
+        if self.isValid(value, suit):
             self.value = value
             self.suit = suit
             if suit == "clubs": s = "Clubs"
@@ -23,9 +24,12 @@ class Card:
             elif value == "K": v = 13
             else: v = value
             self.image = pygame.image.load(f"Cards Pack\\Large\\{s} {v}.png")
+            self.size = self.image.get_size()
         
         else:
             raise Exception("Invalid value or suit")
+
+
     def __lt__ (self, other):
         if self.a == other.a:
             return self.b < other.b

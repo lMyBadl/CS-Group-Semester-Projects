@@ -2,8 +2,9 @@ import pygame, sys
 from card_logic import Card, Deck
 from player import Player
 
-card_width = 103
-card_height = 138
+text_size = 50
+
+
 
 class Durak:
     # Initialize pygame
@@ -51,13 +52,16 @@ class Durak:
 
         # Fill the screen with the dark green color
         screen.fill(dark_green)
-        time_surface = pygame.font.Font(None, 50).render(str(int(clock.get_fps())), True, (255, 255, 255))
+        time_surface = pygame.font.Font(None, text_size).render(str(int(clock.get_fps())), True, (255, 255, 255))
         # Position the text in the center of the rectangle
-        text_rect = time_surface.get_rect(center=(250 + 300 // 2, 200 + 100 // 2))
+        # text_rect = time_surface.get_rect()
 
         # Blit (draw) the text onto the screen
-        screen.blit(time_surface, text_rect)
-        screen.blit(deck[9].image, (screen_width / 2, screen_height-150))
+        screen.blit(time_surface, (screen_width - text_size, text_size))
+
+
+        screen.blit(deck[9].image, ((screen_width - deck[9].size[0])/ 2, screen_height-deck[9].size[1]))
+
 
 
         # Update the display
