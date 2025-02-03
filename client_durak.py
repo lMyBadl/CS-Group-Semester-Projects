@@ -4,7 +4,16 @@ from player import Player
 
 text_size = 50
 
-
+d = Deck(False)
+p = Player()
+p2 = Player()
+p3 = Player()
+p4 = Player()
+while len(p4.hand) <= 6:
+    p.drawCard(d)
+    p2.drawCard(d)
+    p3.drawCard(d)
+    p4.drawCard(d)
 
 class Durak:
     # Initialize pygame
@@ -41,7 +50,7 @@ class Durak:
                 pos = pygame.mouse.get_pos()
 
             # get a list of all sprites that are under the mouse cursor
-            #clicked_sprites = [s for s in sprites if s.rect.collidepoint(pos)]
+                # clicked_sprites = [s for s in sprites if s.rect.collidepoint(pos)]
             # do something with the clicked sprites...
             elif event.type == pygame.QUIT:
                 running = False
@@ -59,8 +68,17 @@ class Durak:
         # Blit (draw) the text onto the screen
         screen.blit(time_surface, (screen_width - text_size, text_size))
 
+        if p.getHand().__sizeof__() % 2 == 1:
+            startPos = (screen_width / 2, screen_height - p.getHand()[0].size[1])
+        else:
+            startPos = ((screen_width - p.getHand()[0].size[0])/ 2, screen_height - p.getHand()[0].size[1])
 
-        screen.blit(deck[9].image, ((screen_width - deck[9].size[0])/ 2, screen_height-deck[9].size[1]))
+        i=0
+        for card in p.getHand():
+            screen.blit(card.image, (startPos[0] + 30 * i, startPos[1]))
+            i+=1
+
+        #screen.blit(deck[9].image, ((screen_width - deck[9].size[0])/ 2, screen_height-deck[9].size[1]))
 
 
 

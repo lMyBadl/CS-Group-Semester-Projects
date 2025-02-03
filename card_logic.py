@@ -63,6 +63,7 @@ class Deck:
 
     def __getitem__(self, item):
         return self.deck[item]
+
     def removeCard(self, value, suit):
         card = Card(value, suit)
         if(card not in self.deck):
@@ -71,6 +72,8 @@ class Deck:
         return True
     
     def drawCard(self):
+        print(len(self.deck))
+
         return self.deck.pop()
     
     def shuffleDeck(self):
