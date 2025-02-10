@@ -68,17 +68,29 @@ class Durak:
         # Blit (draw) the text onto the screen
         screen.blit(time_surface, (screen_width - text_size, text_size))
 
-        if p.getHand().__sizeof__() % 2 == 1:
-            startPos = (screen_width / 2, screen_height - p.getHand()[0].size[1])
+        handSize = p.__len__()
+        cardShift = 30
+        if handSize % 2 == 1:
+            #startPos = (screen_width / 2 - int(handSize / 2) * cardShift - cardShift / 2, screen_height - p.getHand()[0].size[1])
+
+            startPos = ((screen_width - p.getHand()[0].size[0])/ 2 - int(handSize/2)*cardShift, screen_height - p.getHand()[0].size[1])
         else:
-            startPos = ((screen_width - p.getHand()[0].size[0])/ 2, screen_height - p.getHand()[0].size[1])
+            #startPos = ((screen_width - p.getHand()[0].size[0])/ 2 - int(handSize/2)*cardShift - cardShift / 2, screen_height - p.getHand()[0].size[1])
+
+            startPos = (screen_width / 2 - int(handSize / 2) * cardShift, screen_height - p.getHand()[0].size[1])
 
         i=0
         for card in p.getHand():
-            screen.blit(card.image, (startPos[0] + 30 * i, startPos[1]))
+            screen.blit(card.image, (startPos[0] + cardShift * i, startPos[1]))
             i+=1
 
-        #screen.blit(deck[9].image, ((screen_width - deck[9].size[0])/ 2, screen_height-deck[9].size[1]))
+
+        for x in range(p2.__len__()):
+            screen.blit(pygame.image.load("Cards Pack\\Large\\Back Blue 2.png"), (startPos[0] + cardShift * x, 0))
+            x += 1
+
+        for x in range(p3.__len__()):
+            screen.blit(pygame.image.load("Cards Pack\\Large\\Back Blue 2 Horizontal.png"), (0, (screen_width - p.getHand()[0].size[0])/ 2 - int(handSize/2)*cardShift + x * cardShift))
 
 
 
