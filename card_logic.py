@@ -72,8 +72,6 @@ class Deck:
         return True
     
     def drawCard(self):
-        print(len(self.deck))
-
         return self.deck.pop()
     
     def shuffleDeck(self):
