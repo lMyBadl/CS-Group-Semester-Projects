@@ -13,6 +13,9 @@ class Player:
     def getHand(self):
         return self.hand
 
+    def __len__(self):
+        return self.hand.__len__()
+
     def __str__(self):
         output = ""
         for card in self.hand:
