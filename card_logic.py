@@ -8,10 +8,13 @@ validSuits = {"hearts", "diamonds", "spades", "clubs"}
 
 
 class Card:
-    def __init__(self, value, suit):
+    def __init__(self, value, suit, trumpSuit, trumpValue, pos):
         if self.isValid(value, suit):
             self.value = value
             self.suit = suit
+            self.trumpSuit = trumpSuit
+            self.trumpValue = trumpValue
+            self.pos = pos
             if suit == "clubs": s = "Clubs"
             elif suit == "spades": s = "Spades"
             elif suit == "diamonds": s = "Diamonds"
@@ -23,6 +26,11 @@ class Card:
             elif value == "Q": v = 12
             elif value == "K": v = 13
             else: v = value
+            if suit == "joker":
+                s = "Joker"
+                if value == "red": v = "Red"
+                elif value == "black": v = "Black"
+
             self.image = pygame.image.load(f"Cards Pack\\Large\\{s} {v}.png")
             self.size = self.image.get_size()
         
@@ -31,12 +39,19 @@ class Card:
 
 
     def __lt__ (self, other):
-        if self.a == other.a:
-            return self.b < other.b
-        return self.a < other.b
+        return other.__gt__(self)
 
     def __gt__ (self, other):
-        return other.__lt__(self)
+        if self.suit == "joker" and other.suit != "joker":
+            pass
+        if self.suit != self.trumpSuit and other.suit == self.trumpSuit:
+            return True
+        elif self.suit == self.trumpSuit and other.suit != self.trumpSuit:
+            return False
+        elif self.suit == self.trumpSuit and other.suit == self.trumpSuit:
+            if self.value == self.trumpValue:
+                pass
+        return False
 
     def __eq__ (self, other):
         return self.value == other.value and self.suit == other.suit
@@ -44,11 +59,13 @@ class Card:
     def __ne__ (self, other):
         return not self.__eq__(other)
 
-
-    def isValid(self, value, suit):
+    @staticmethod
+    def isValid(value, suit):
         global validValues, validSuits
+        if suit == "joker" and value in ["red, black"]:
+            return True
         return value in validValues and suit in validSuits
-    
+
     def __str__(self):
         return f"{self.value} of {self.suit}"
     
