@@ -1,5 +1,5 @@
 import pygame, sys
-from card_logic import Card, Deck
+from card_logic import Deck
 from player import Player
 
 text_size = 50
@@ -68,12 +68,17 @@ class Durak:
         # Blit (draw) the text onto the screen
         screen.blit(time_surface, (screen_width - text_size, text_size))
 
+<<<<<<< Updated upstream
         handSize = p.__len__()
         cardShift = 30
         if handSize % 2 == 1:
             #startPos = (screen_width / 2 - int(handSize / 2) * cardShift - cardShift / 2, screen_height - p.getHand()[0].size[1])
 
             startPos = ((screen_width - p.getHand()[0].size[0])/ 2 - int(handSize/2)*cardShift, screen_height - p.getHand()[0].size[1])
+=======
+        if p.getHand().len() % 2 == 1:
+            startPos = (screen_width / 2, screen_height - p.getHand()[0].size[1])
+>>>>>>> Stashed changes
         else:
             #startPos = ((screen_width - p.getHand()[0].size[0])/ 2 - int(handSize/2)*cardShift - cardShift / 2, screen_height - p.getHand()[0].size[1])
 
@@ -81,8 +86,13 @@ class Durak:
 
         i=0
         for card in p.getHand():
+<<<<<<< Updated upstream
             screen.blit(card.image, (startPos[0] + cardShift * i, startPos[1]))
 
+=======
+            screen.blit(card.image, (startPos[0] + 30 * i, startPos[1]))
+            print(str(card.getPos()))
+>>>>>>> Stashed changes
             i+=1
 
 

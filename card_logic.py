@@ -13,11 +13,16 @@ def isValid(value, suit):
 
 
 class Card:
+<<<<<<< Updated upstream
     def __init__(self, value, suit, pos):
         self.pos = pos
+=======
+    def __init__(self, value, suit, pos = (0, 0)):
+>>>>>>> Stashed changes
         if isValid(value, suit):
             self.value = value
             self.suit = suit
+            self.pos = pos
             if suit == "clubs": s = "Clubs"
             elif suit == "spades": s = "Spades"
             elif suit == "diamonds": s = "Diamonds"
@@ -33,7 +38,7 @@ class Card:
             self.size = self.image.get_size()
         
         else:
-            raise Exception("Invalid value or suit")
+            raise ValueError("Invalid value or suit")
 
 
     def __lt__ (self, other):
@@ -50,6 +55,19 @@ class Card:
     def __ne__ (self, other):
         return not self.__eq__(other)
 
+<<<<<<< Updated upstream
+=======
+    def getPos(self):
+        """
+
+        Returns
+        -------
+        tuple
+            position as (x, y)
+        """
+        return self.pos
+
+>>>>>>> Stashed changes
     def __str__(self):
         return f"{self.value} of {self.suit}"
 
