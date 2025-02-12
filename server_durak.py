@@ -15,8 +15,6 @@ except socket.error as e:
 server_socket.listen()
 print("Server started. Waiting for connections...")
 
-
-
 while True:
     client_socket, addr = server_socket.accept()
     print(f"Connection has been established | {addr}")

@@ -82,6 +82,7 @@ class Durak:
         i=0
         for card in p.getHand():
             screen.blit(card.image, (startPos[0] + cardShift * i, startPos[1]))
+
             i+=1
 
 
